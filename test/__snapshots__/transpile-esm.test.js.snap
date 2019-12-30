@@ -1,0 +1,1174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transpile: ESM alias 1`] = `
+"\\"use strict\\";
+
+var _Button = require(\\"-/components/button/Button\\");
+
+var _testonly = require(\\"-/testonly\\");
+
+require(\\"src/testonly\\");
+
+(0, _testonly.logx)(_Button.Button);"
+`;
+
+exports[`Transpile: ESM alias.tsx 1`] = `
+"\\"use strict\\";
+
+var _Button = require(\\"-/components/button/Button\\");
+
+var _testonly = require(\\"-/testonly\\");
+
+require(\\"src/testonly\\");
+
+(0, _testonly.logx)(_Button.Button);"
+`;
+
+exports[`Transpile: ESM comments 1`] = `
+"\\"use strict\\";
+
+var _lodash = require(\\"lodash\\");
+
+function translate(value) {
+  return (0, _lodash.camelCase)(value);
+}"
+`;
+
+exports[`Transpile: ESM deadcode 1`] = `
+"\\"use strict\\";
+
+var STATIC = false;
+before();
+after();"
+`;
+
+exports[`Transpile: ESM es2015: classes 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+exports.__esModule = true;
+exports.Component = void 0;
+
+var _inheritsLoose2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/helpers/inheritsLoose\\"));
+
+var Component =
+/*#__PURE__*/
+function (_Other) {
+  (0, _inheritsLoose2.default)(Component, _Other);
+
+  function Component() {
+    var _this = _Other.call(this) || this;
+
+    _this.flag = true;
+    return _this;
+  }
+
+  var _proto = Component.prototype;
+
+  _proto.main = function main() {
+    alert(this.foo);
+  };
+
+  return Component;
+}(Other);
+
+exports.Component = Component;"
+`;
+
+exports[`Transpile: ESM es2015: for_off 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+var _getIterator2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js/get-iterator\\"));
+
+var _isArray2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/array/is-array\\"));
+
+function test() {
+  for (var _iterator = tasks, _isArray = (0, _isArray2.default)(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator2.default)(_iterator);;) {
+    var _ref;
+
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
+
+    try {
+      executeCommands();
+    } catch (error) {
+      console.error(\\"Error\\");
+    }
+  }
+}"
+`;
+
+exports[`Transpile: ESM es2015: generator 1`] = `
+"\\"use strict\\";
+
+function* idMaker() {
+  var index = 0;
+
+  while (true) {
+    yield index++;
+  }
+}"
+`;
+
+exports[`Transpile: ESM es2015: set 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+var _set = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/set\\"));
+
+new _set.default([1, 2, 3]);"
+`;
+
+exports[`Transpile: ESM es2016: exponentiation 1`] = `
+"\\"use strict\\";
+
+var result = Math.pow(2, 3);"
+`;
+
+exports[`Transpile: ESM esnext: async 1`] = `
+"\\"use strict\\";
+
+var _spliceInstanceProperty = require(\\"@babel/runtime-corejs3/core-js-stable/instance/splice\\");
+
+var _setTimeout = require(\\"@babel/runtime-corejs3/core-js-stable/set-timeout\\");
+
+var _setImmediate = require(\\"@babel/runtime-corejs3/core-js-stable/set-immediate\\");
+
+var _Object$defineProperty = require(\\"@babel/runtime-corejs3/core-js-stable/object/define-property\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
+  \\"use strict\\";
+
+  if (!Function.prototype.$asyncbind) {
+    _Object$defineProperty(Function.prototype, \\"$asyncbind\\", {
+      value: $asyncbind,
+      enumerable: false,
+      configurable: true,
+      writable: true
+    });
+  }
+
+  if (!$asyncbind.trampoline) {
+    $asyncbind.trampoline = function trampoline(t, x, s, e, u) {
+      return function b(q) {
+        while (q) {
+          if (q.then) {
+            q = q.then(b, e);
+            return u ? undefined : q;
+          }
+
+          try {
+            if (q.pop) {
+              if (q.length) return q.pop() ? x.call(t) : q;
+              q = s;
+            } else q = q.call(t);
+          } catch (r) {
+            return e(r);
+          }
+        }
+      };
+    };
+  }
+
+  if (!$asyncbind.LazyThenable) {
+    $asyncbind.LazyThenable = function () {
+      function isThenable(obj) {
+        return obj && obj instanceof Object && typeof obj.then == \\"function\\";
+      }
+
+      function resolution(p, r, how) {
+        try {
+          var x = how ? how(r) : r;
+          if (p === x) return p.reject(new TypeError(\\"Promise resolution loop\\"));
+
+          if (isThenable(x)) {
+            x.then(function (y) {
+              resolution(p, y);
+            }, function (e) {
+              p.reject(e);
+            });
+          } else {
+            p.resolve(x);
+          }
+        } catch (ex) {
+          p.reject(ex);
+        }
+      }
+
+      function _unchained() {}
+
+      function Chained() {}
+
+      Chained.prototype = {
+        resolve: _unchained,
+        reject: _unchained,
+        then: function thenChain(res, rej) {
+          this.resolve = res;
+          this.reject = rej;
+        }
+      };
+
+      function then(res, rej) {
+        var chain = new Chained();
+
+        try {
+          this._resolver(function (value) {
+            return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
+          }, function (ex) {
+            resolution(chain, ex, rej);
+          });
+        } catch (ex) {
+          resolution(chain, ex, rej);
+        }
+
+        return chain;
+      }
+
+      function Thenable(resolver) {
+        this._resolver = resolver;
+        this.then = then;
+      }
+
+      Thenable.resolve = function (v) {
+        return Thenable.isThenable(v) ? v : {
+          then: function then(resolve) {
+            return resolve(v);
+          }
+        };
+      };
+
+      Thenable.isThenable = isThenable;
+      return Thenable;
+    }();
+
+    $asyncbind.EagerThenable = $asyncbind.Thenable = ($asyncbind.EagerThenableFactory = function (tick) {
+      tick = tick || typeof process == \\"object\\" && process.nextTick || typeof _setImmediate == \\"function\\" && _setImmediate || function (f) {
+        _setTimeout(f, 0);
+      };
+
+      var soon = function () {
+        var fq = [],
+            fqStart = 0,
+            bufferSize = 1024;
+
+        function callQueue() {
+          while (fq.length - fqStart) {
+            try {
+              fq[fqStart]();
+            } catch (ex) {}
+
+            fq[fqStart++] = undefined;
+
+            if (fqStart === bufferSize) {
+              _spliceInstanceProperty(fq).call(fq, 0, bufferSize);
+
+              fqStart = 0;
+            }
+          }
+        }
+
+        return function (fn) {
+          fq.push(fn);
+          if (fq.length - fqStart == 1) tick(callQueue);
+        };
+      }();
+
+      function Zousan(func) {
+        if (func) {
+          var me = this;
+          func(function (arg) {
+            me.resolve(arg);
+          }, function (arg) {
+            me.reject(arg);
+          });
+        }
+      }
+
+      Zousan.prototype = {
+        resolve: function resolve(value) {
+          if (this.state !== undefined) return;
+          if (value === this) return this.reject(new TypeError(\\"Attempt to resolve promise with self\\"));
+          var me = this;
+
+          if (value && (typeof value == \\"function\\" || typeof value == \\"object\\")) {
+            try {
+              var first = 0;
+              var then = value.then;
+
+              if (typeof then == \\"function\\") {
+                then.call(value, function (ra) {
+                  if (!first++) {
+                    me.resolve(ra);
+                  }
+                }, function (rr) {
+                  if (!first++) {
+                    me.reject(rr);
+                  }
+                });
+                return;
+              }
+            } catch (e) {
+              if (!first) this.reject(e);
+              return;
+            }
+          }
+
+          this.state = STATE_FULFILLED;
+          this.v = value;
+          if (me.c) soon(function () {
+            for (var n = 0, l = me.c.length; n < l; n++) {
+              STATE_FULFILLED(me.c[n], value);
+            }
+          });
+        },
+        reject: function reject(reason) {
+          if (this.state !== undefined) return;
+          this.state = STATE_REJECTED;
+          this.v = reason;
+          var clients = this.c;
+          if (clients) soon(function () {
+            for (var n = 0, l = clients.length; n < l; n++) {
+              STATE_REJECTED(clients[n], reason);
+            }
+          });
+        },
+        then: function then(onF, onR) {
+          var p = new Zousan();
+          var client = {
+            y: onF,
+            n: onR,
+            p: p
+          };
+
+          if (this.state === undefined) {
+            if (this.c) this.c.push(client);else this.c = [client];
+          } else {
+            var s = this.state,
+                a = this.v;
+            soon(function () {
+              s(client, a);
+            });
+          }
+
+          return p;
+        }
+      };
+
+      function STATE_FULFILLED(c, arg) {
+        if (typeof c.y == \\"function\\") {
+          try {
+            var yret = c.y.call(undefined, arg);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.resolve(arg);
+      }
+
+      function STATE_REJECTED(c, reason) {
+        if (typeof c.n == \\"function\\") {
+          try {
+            var yret = c.n.call(undefined, reason);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.reject(reason);
+      }
+
+      Zousan.resolve = function (val) {
+        if (val && val instanceof Zousan) return val;
+        var z = new Zousan();
+        z.resolve(val);
+        return z;
+      };
+
+      Zousan.reject = function (err) {
+        if (err && err instanceof Zousan) return err;
+        var z = new Zousan();
+        z.reject(err);
+        return z;
+      };
+
+      Zousan.version = \\"2.3.3-nodent\\";
+      return Zousan;
+    })();
+  }
+
+  function boundThen() {
+    return resolver.apply(self, arguments);
+  }
+
+  var resolver = this;
+
+  switch (catcher) {
+    case true:
+      return new $asyncbind.Thenable(boundThen);
+
+    case 0:
+      return new $asyncbind.LazyThenable(boundThen);
+
+    case undefined:
+      boundThen.then = boundThen;
+      return boundThen;
+
+    default:
+      return function () {
+        try {
+          return resolver.apply(self, arguments);
+        } catch (ex) {
+          return catcher(ex);
+        }
+      };
+  }
+};
+
+function wait() {
+  return new Promise(function ($return, $error) {
+    return loadData().then(function () {
+      return $return();
+    }.$asyncbind(this, $error), $error);
+  });
+}"
+`;
+
+exports[`Transpile: ESM esnext: async_loop 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+var _spliceInstanceProperty = require(\\"@babel/runtime-corejs3/core-js-stable/instance/splice\\");
+
+var _setTimeout = require(\\"@babel/runtime-corejs3/core-js-stable/set-timeout\\");
+
+var _setImmediate = require(\\"@babel/runtime-corejs3/core-js-stable/set-immediate\\");
+
+var _Object$defineProperty = require(\\"@babel/runtime-corejs3/core-js-stable/object/define-property\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+var _getIterator2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js/get-iterator\\"));
+
+var _isArray2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/array/is-array\\"));
+
+Function.prototype.$asyncbind = function $asyncbind(self, catcher) {
+  \\"use strict\\";
+
+  if (!Function.prototype.$asyncbind) {
+    _Object$defineProperty(Function.prototype, \\"$asyncbind\\", {
+      value: $asyncbind,
+      enumerable: false,
+      configurable: true,
+      writable: true
+    });
+  }
+
+  if (!$asyncbind.trampoline) {
+    $asyncbind.trampoline = function trampoline(t, x, s, e, u) {
+      return function b(q) {
+        while (q) {
+          if (q.then) {
+            q = q.then(b, e);
+            return u ? undefined : q;
+          }
+
+          try {
+            if (q.pop) {
+              if (q.length) return q.pop() ? x.call(t) : q;
+              q = s;
+            } else q = q.call(t);
+          } catch (r) {
+            return e(r);
+          }
+        }
+      };
+    };
+  }
+
+  if (!$asyncbind.LazyThenable) {
+    $asyncbind.LazyThenable = function () {
+      function isThenable(obj) {
+        return obj && obj instanceof Object && typeof obj.then == \\"function\\";
+      }
+
+      function resolution(p, r, how) {
+        try {
+          var x = how ? how(r) : r;
+          if (p === x) return p.reject(new TypeError(\\"Promise resolution loop\\"));
+
+          if (isThenable(x)) {
+            x.then(function (y) {
+              resolution(p, y);
+            }, function (e) {
+              p.reject(e);
+            });
+          } else {
+            p.resolve(x);
+          }
+        } catch (ex) {
+          p.reject(ex);
+        }
+      }
+
+      function _unchained() {}
+
+      function Chained() {}
+
+      Chained.prototype = {
+        resolve: _unchained,
+        reject: _unchained,
+        then: function thenChain(res, rej) {
+          this.resolve = res;
+          this.reject = rej;
+        }
+      };
+
+      function then(res, rej) {
+        var chain = new Chained();
+
+        try {
+          this._resolver(function (value) {
+            return isThenable(value) ? value.then(res, rej) : resolution(chain, value, res);
+          }, function (ex) {
+            resolution(chain, ex, rej);
+          });
+        } catch (ex) {
+          resolution(chain, ex, rej);
+        }
+
+        return chain;
+      }
+
+      function Thenable(resolver) {
+        this._resolver = resolver;
+        this.then = then;
+      }
+
+      Thenable.resolve = function (v) {
+        return Thenable.isThenable(v) ? v : {
+          then: function then(resolve) {
+            return resolve(v);
+          }
+        };
+      };
+
+      Thenable.isThenable = isThenable;
+      return Thenable;
+    }();
+
+    $asyncbind.EagerThenable = $asyncbind.Thenable = ($asyncbind.EagerThenableFactory = function (tick) {
+      tick = tick || typeof process == \\"object\\" && process.nextTick || typeof _setImmediate == \\"function\\" && _setImmediate || function (f) {
+        _setTimeout(f, 0);
+      };
+
+      var soon = function () {
+        var fq = [],
+            fqStart = 0,
+            bufferSize = 1024;
+
+        function callQueue() {
+          while (fq.length - fqStart) {
+            try {
+              fq[fqStart]();
+            } catch (ex) {}
+
+            fq[fqStart++] = undefined;
+
+            if (fqStart === bufferSize) {
+              _spliceInstanceProperty(fq).call(fq, 0, bufferSize);
+
+              fqStart = 0;
+            }
+          }
+        }
+
+        return function (fn) {
+          fq.push(fn);
+          if (fq.length - fqStart == 1) tick(callQueue);
+        };
+      }();
+
+      function Zousan(func) {
+        if (func) {
+          var me = this;
+          func(function (arg) {
+            me.resolve(arg);
+          }, function (arg) {
+            me.reject(arg);
+          });
+        }
+      }
+
+      Zousan.prototype = {
+        resolve: function resolve(value) {
+          if (this.state !== undefined) return;
+          if (value === this) return this.reject(new TypeError(\\"Attempt to resolve promise with self\\"));
+          var me = this;
+
+          if (value && (typeof value == \\"function\\" || typeof value == \\"object\\")) {
+            try {
+              var first = 0;
+              var then = value.then;
+
+              if (typeof then == \\"function\\") {
+                then.call(value, function (ra) {
+                  if (!first++) {
+                    me.resolve(ra);
+                  }
+                }, function (rr) {
+                  if (!first++) {
+                    me.reject(rr);
+                  }
+                });
+                return;
+              }
+            } catch (e) {
+              if (!first) this.reject(e);
+              return;
+            }
+          }
+
+          this.state = STATE_FULFILLED;
+          this.v = value;
+          if (me.c) soon(function () {
+            for (var n = 0, l = me.c.length; n < l; n++) {
+              STATE_FULFILLED(me.c[n], value);
+            }
+          });
+        },
+        reject: function reject(reason) {
+          if (this.state !== undefined) return;
+          this.state = STATE_REJECTED;
+          this.v = reason;
+          var clients = this.c;
+          if (clients) soon(function () {
+            for (var n = 0, l = clients.length; n < l; n++) {
+              STATE_REJECTED(clients[n], reason);
+            }
+          });
+        },
+        then: function then(onF, onR) {
+          var p = new Zousan();
+          var client = {
+            y: onF,
+            n: onR,
+            p: p
+          };
+
+          if (this.state === undefined) {
+            if (this.c) this.c.push(client);else this.c = [client];
+          } else {
+            var s = this.state,
+                a = this.v;
+            soon(function () {
+              s(client, a);
+            });
+          }
+
+          return p;
+        }
+      };
+
+      function STATE_FULFILLED(c, arg) {
+        if (typeof c.y == \\"function\\") {
+          try {
+            var yret = c.y.call(undefined, arg);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.resolve(arg);
+      }
+
+      function STATE_REJECTED(c, reason) {
+        if (typeof c.n == \\"function\\") {
+          try {
+            var yret = c.n.call(undefined, reason);
+            c.p.resolve(yret);
+          } catch (err) {
+            c.p.reject(err);
+          }
+        } else c.p.reject(reason);
+      }
+
+      Zousan.resolve = function (val) {
+        if (val && val instanceof Zousan) return val;
+        var z = new Zousan();
+        z.resolve(val);
+        return z;
+      };
+
+      Zousan.reject = function (err) {
+        if (err && err instanceof Zousan) return err;
+        var z = new Zousan();
+        z.reject(err);
+        return z;
+      };
+
+      Zousan.version = \\"2.3.3-nodent\\";
+      return Zousan;
+    })();
+  }
+
+  function boundThen() {
+    return resolver.apply(self, arguments);
+  }
+
+  var resolver = this;
+
+  switch (catcher) {
+    case true:
+      return new $asyncbind.Thenable(boundThen);
+
+    case 0:
+      return new $asyncbind.LazyThenable(boundThen);
+
+    case undefined:
+      boundThen.then = boundThen;
+      return boundThen;
+
+    default:
+      return function () {
+        try {
+          return resolver.apply(self, arguments);
+        } catch (ex) {
+          return catcher(ex);
+        }
+      };
+  }
+};
+
+function executeTasks(tasks) {
+  return new Promise(function ($return, $error) {
+    var _iterator, _isArray, _i, _ref;
+
+    _iterator = tasks, _isArray = (0, _isArray2.default)(_iterator), _i = 0, _iterator = _isArray ? _iterator : (0, _getIterator2.default)(_iterator);
+
+    function $Loop_2() {
+      if (_isArray) {
+        if (_i >= _iterator.length) return [1];
+        _ref = _iterator[_i++];
+      } else {
+        _i = _iterator.next();
+        if (_i.done) return [1];
+        _ref = _i.value;
+      }
+
+      var $Try_1_Post = function () {
+        return $Loop_2;
+      }.$asyncbind(this, $error);
+
+      var $Try_1_Catch = function () {
+        console.error(\\"Error\\");
+        return $Try_1_Post();
+      }.$asyncbind(this, $error);
+
+      try {
+        return executeCommands().then(function () {
+          return $Try_1_Post();
+        }.$asyncbind(this, $Try_1_Catch), $Try_1_Catch);
+      } catch (error) {
+        $Try_1_Catch(error)
+      }
+    }
+
+    return Function.$asyncbind.trampoline(this, function $Loop_2_exit() {
+      return $return();
+    }, $Loop_2, $error, true)($Loop_2);
+  });
+}"
+`;
+
+exports[`Transpile: ESM esnext: catch_bind 1`] = `
+"\\"use strict\\";
+
+try {
+  throw 0;
+} catch (_unused) {
+  doSomethingWhichDoesntCareAboutTheValueThrown();
+} finally {
+  doSomeCleanup();
+}"
+`;
+
+exports[`Transpile: ESM esnext: class properties 1`] = `
+"\\"use strict\\";
+
+exports.__esModule = true;
+exports.Component = void 0;
+
+var Component = function Component() {
+  this.onClick = function () {};
+};
+
+exports.Component = Component;"
+`;
+
+exports[`Transpile: ESM esnext: decorators 1`] = `
+"\\"use strict\\";
+
+var _class;
+
+var MyClass = annotation(_class = function MyClass() {}) || _class;
+
+function annotation(target) {
+  target.annotated = true;
+}"
+`;
+
+exports[`Transpile: ESM esnext: dynamic import 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+var _promise = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/promise\\"));
+
+var _interopRequireWildcard2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/helpers/interopRequireWildcard\\"));
+
+_promise.default.resolve().then(function () {
+  return (0, _interopRequireWildcard2.default)(require(\\"lodash\\"));
+}).then(function (lodash) {
+  console.log(lodash.camelCase(\\"hello world\\"));
+});"
+`;
+
+exports[`Transpile: ESM esnext: object spread 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+var _assign = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/object/assign\\"));
+
+var original = {
+  bar: 10
+};
+var variant = (0, _assign.default)({
+  foo: 1
+}, original);"
+`;
+
+exports[`Transpile: ESM index 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _indexOf = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/instance/index-of\\"));
+
+var _filter = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/instance/filter\\"));
+
+var _fs = _interopRequireDefault(require(\\"fs\\"));
+
+var _context;
+
+var fixtures = (0, _filter.default)(_context = _fs.default.readdirSync(__dirname)).call(_context, function (file) {
+  return (0, _indexOf.default)(file).call(file, '.') !== 0 && file !== basename;
+});
+var _default = fixtures;
+exports.default = _default;"
+`;
+
+exports[`Transpile: ESM loadable 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+exports.__esModule = true;
+exports.Contact = exports.About = exports.Home = void 0;
+
+var _promise = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/promise\\"));
+
+var _interopRequireWildcard2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/helpers/interopRequireWildcard\\"));
+
+var _component = _interopRequireDefault(require(\\"@loadable/component\\"));
+
+var Home = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/Home\\"));
+  });
+});
+exports.Home = Home;
+var About = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/About\\"));
+  });
+});
+exports.About = About;
+var Contact = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/Contact\\"));
+  });
+});
+exports.Contact = Contact;"
+`;
+
+exports[`Transpile: ESM loadable magic-comments 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+exports.__esModule = true;
+exports.Contact = exports.About = exports.Home = void 0;
+
+var _promise = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/promise\\"));
+
+var _interopRequireWildcard2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/helpers/interopRequireWildcard\\"));
+
+var _component = _interopRequireDefault(require(\\"@loadable/component\\"));
+
+var Home = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/Home\\"));
+  });
+});
+exports.Home = Home;
+var About = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/About\\"));
+  });
+});
+exports.About = About;
+var Contact = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/Contact\\"));
+  });
+});
+exports.Contact = Contact;"
+`;
+
+exports[`Transpile: ESM loadable wildcard 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+require(\\"core-js/modules/es.object.to-string\\");
+
+require(\\"core-js/modules/es.promise\\");
+
+exports.__esModule = true;
+exports.reactIntlData = exports.leanIntlData = exports.views = void 0;
+
+var _promise = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/promise\\"));
+
+var _interopRequireWildcard2 = _interopRequireDefault(require(\\"@babel/runtime-corejs3/helpers/interopRequireWildcard\\"));
+
+var _component = _interopRequireDefault(require(\\"@loadable/component\\"));
+
+var page = \\"About\\";
+var lang = \\"de_DE\\";
+var views = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./views/\\" + page));
+  });
+});
+exports.views = views;
+var leanIntlData = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./lean-intl/locale-data/\\" + lang));
+  });
+});
+exports.leanIntlData = leanIntlData;
+var reactIntlData = (0, _component.default)(function () {
+  return _promise.default.resolve().then(function () {
+    return (0, _interopRequireWildcard2.default)(require(\\"./react-intl/locale-data/\\" + lang));
+  });
+});
+exports.reactIntlData = reactIntlData;"
+`;
+
+exports[`Transpile: ESM lodash: async 1`] = `
+"\\"use strict\\";
+
+var _async = require(\\"async\\");
+
+(0, _async.parallel)([]);"
+`;
+
+exports[`Transpile: ESM lodash: lodash 1`] = `
+"\\"use strict\\";
+
+var _lodash = require(\\"lodash\\");
+
+(0, _lodash.camelCase)(\\"hello world\\");"
+`;
+
+exports[`Transpile: ESM lodash: recompose 1`] = `
+"\\"use strict\\";
+
+var _recompose = require(\\"recompose\\");
+
+(0, _recompose.compose)([]);"
+`;
+
+exports[`Transpile: ESM macro: gql 1`] = `
+"\\"use strict\\";
+
+var query = {
+  kind: \\"Document\\",
+  definitions: [{
+    kind: \\"OperationDefinition\\",
+    operation: \\"query\\",
+    name: {
+      kind: \\"Name\\",
+      value: \\"User\\"
+    },
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: {
+      kind: \\"SelectionSet\\",
+      selections: [{
+        kind: \\"Field\\",
+        name: {
+          kind: \\"Name\\",
+          value: \\"user\\"
+        },
+        arguments: [{
+          kind: \\"Argument\\",
+          name: {
+            kind: \\"Name\\",
+            value: \\"id\\"
+          },
+          value: {
+            kind: \\"IntValue\\",
+            value: \\"5\\"
+          }
+        }],
+        directives: [],
+        selectionSet: {
+          kind: \\"SelectionSet\\",
+          selections: [{
+            kind: \\"Field\\",
+            name: {
+              kind: \\"Name\\",
+              value: \\"lastName\\"
+            },
+            arguments: [],
+            directives: []
+          }, {
+            kind: \\"FragmentSpread\\",
+            name: {
+              kind: \\"Name\\",
+              value: \\"UserEntry1\\"
+            },
+            directives: []
+          }]
+        }
+      }]
+    }
+  }],
+  loc: {
+    start: 0,
+    end: 79,
+    source: {
+      body: \\"\\\\n  query User {\\\\n    user(id: 5) {\\\\n      lastName\\\\n      ...UserEntry1\\\\n    }\\\\n  }\\\\n\\",
+      name: \\"GraphQL request\\",
+      locationOffset: {
+        line: 1,
+        column: 1
+      }
+    }
+  }
+};"
+`;
+
+exports[`Transpile: ESM macro: preval 1`] = `
+"\\"use strict\\";
+
+var one = 1;"
+`;
+
+exports[`Transpile: ESM promise 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+exports.__esModule = true;
+exports.default = _default;
+
+var _promise = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/promise\\"));
+
+function _default() {
+  return new _promise.default(function (resolve) {
+    return resolve(42);
+  });
+}"
+`;
+
+exports[`Transpile: ESM react: jsx 1`] = `
+"\\"use strict\\";
+
+function render() {
+  return React.createElement(\\"h1\\", null, \\"Hello\\");
+}"
+`;
+
+exports[`Transpile: ESM react: jsx spread 1`] = `
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime-corejs3/helpers/interopRequireDefault\\");
+
+var _assign = _interopRequireDefault(require(\\"@babel/runtime-corejs3/core-js-stable/object/assign\\"));
+
+function render(props) {
+  return React.createElement(\\"h1\\", (0, _assign.default)({
+    className: \\"large\\"
+  }, props), \\"Hello\\");
+}"
+`;
+
+exports[`Transpile: ESM require context 1`] = `
+"\\"use strict\\";
+
+if (process.env.NODE_ENV === \\"test\\") {
+  require(\\"babel-plugin-require-context-hook/register\\")();
+}
+
+var loader = require.context(__dirname, false, /\\\\.js/);"
+`;
+
+exports[`Transpile: ESM typescript.tsx 1`] = `
+"\\"use strict\\";
+
+exports.__esModule = true;
+exports.hasPackageConfig = void 0;
+
+var hasPackageConfig = function hasPackageConfig(name) {
+  try {
+    return !!getPackageConfig()[name];
+  } catch (_) {
+    return false;
+  }
+};
+
+exports.hasPackageConfig = hasPackageConfig;"
+`;

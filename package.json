@@ -1,0 +1,219 @@
+{
+  "name": "babel-preset-centralized",
+  "version": "0.0.0",
+  "description": "A centralized Babel Configuration for modern ECMAscript development",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Yaroslav Usenko <usenko.jaroslav@gmail.com> (https://usenko.pp.ua)",
+  "contributors": [
+    "Yaroslav Usenko <usenko.jaroslav@gmail.com> (https://usenko.pp.ua)"
+  ],
+  "repository": "github:yarus-app/babel-preset-centralized",
+  "homepage": "https://github.com/yarus-app/babel-preset-centralized",
+  "bugs": "https://github.com/yarus-app/babel-preset-centralized/issues",
+  "browserslist": [
+    "last 2 version",
+    "> 5%",
+    "not dead",
+    "not IE >= 0",
+    "not IE_Mob >= 0"
+  ],
+  "engines": {
+    "node": ">= 12",
+    "npm": ">= 6"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf bin build dist lib public coverage",
+    "prebuild": "npm run clean",
+    "build": "bundler",
+    "test": "jest",
+    "test:coverage": "npm run test -- --coverage",
+    "lint": "eslint . --ext .js --ext .jsx --ext .mjs --ext .ts --ext .tsx --cache --cache-location node_modules/.cache/eslint",
+    "format:code": "npm run lint -- --fix",
+    "format:other": "prettier **/*.{json,yml,yaml,md,gql,graphql} --write",
+    "format": "npm run format:other && npm run format:code"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/plugin-proposal-do-expressions": "^7.7.4",
+    "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "@babel/plugin-proposal-export-namespace-from": "^7.7.4",
+    "@babel/plugin-proposal-function-bind": "^7.7.4",
+    "@babel/plugin-proposal-function-sent": "^7.7.4",
+    "@babel/plugin-proposal-json-strings": "^7.7.4",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.7.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
+    "@babel/plugin-proposal-numeric-separator": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-proposal-pipeline-operator": "^7.7.7",
+    "@babel/plugin-proposal-throw-expressions": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-syntax-import-meta": "^7.7.4",
+    "@babel/plugin-transform-react-constant-elements": "^7.7.4",
+    "@babel/plugin-transform-react-inline-elements": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
+    "@babel/runtime-corejs3": "^7.7.7",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-minify": "^0.5.1",
+    "core-js": "^3.6.1",
+    "fast-async": "^6.3.8",
+    "lodash.merge": "^4.6.2"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@yarus/bundler": "0.0.4",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jest": "^23.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "graphql": "^14.5.8",
+    "graphql.macro": "^1.4.2",
+    "husky": "^3.1.0",
+    "imagemin-lint-staged": "^0.4.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "preval.macro": "^4.0.0",
+    "react": "^16.12.0",
+    "rimraf": "^3.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/babel",
+      "prettier/standard",
+      "prettier/unicorn",
+      "plugin:node/recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "no-unused-vars": "warn",
+      "no-console": "off",
+      "func-names": "off",
+      "no-process-exit": "off",
+      "object-shorthand": "off",
+      "class-methods-use-this": "off",
+      "node/no-unsupported-features/es-syntax": "off"
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.config.js"
+        ],
+        "rules": {
+          "no-unused-vars": "off"
+        }
+      },
+      {
+        "files": [
+          "test/**/*.{js,jsx,mjs,ts,tsx}"
+        ],
+        "rules": {
+          "import/no-extraneous-dependencies": "off",
+          "import/no-unresolved": "off",
+          "import/extensions": "off",
+          "node/no-missing-import": "off",
+          "node/no-extraneous-import": "off"
+        }
+      },
+      {
+        "files": [
+          "test/**/*.{ts,tsx}"
+        ],
+        "extends": [
+          "prettier/@typescript-eslint"
+        ]
+      },
+      {
+        "files": [
+          "test/**/*.{jsx,tsx}"
+        ],
+        "extends": [
+          "prettier/react"
+        ]
+      },
+      {
+        "files": [
+          "test/**/*.js"
+        ],
+        "env": {
+          "jest": true
+        },
+        "plugins": [
+          "jest"
+        ],
+        "rules": {
+          "jest/no-disabled-tests": "warn",
+          "jest/no-focused-tests": "error",
+          "jest/no-identical-title": "error",
+          "jest/prefer-to-have-length": "warn",
+          "jest/valid-expect": "error"
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "**/bin/**",
+    "**/lib/**",
+    "**/node_modules/**",
+    "**/__snapshots__/**",
+    "**/__fixtures__/**"
+  ],
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.json",
+        "options": {
+          "printWidth": 200
+        }
+      }
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,ts,tsx}": [
+      "npm run format:code",
+      "git add"
+    ],
+    "*.{json,yml,yaml,md,gql,graphql}": [
+      "npm run format:other",
+      "git add"
+    ],
+    "*.{jpg,jpeg,png,gif,svg}": [
+      "imagemin-lint-staged",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  }
+}
