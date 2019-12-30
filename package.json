@@ -1,8 +1,17 @@
 {
   "name": "babel-preset-centralized",
-  "version": "0.0.0",
+  "version": "1.5.2",
   "description": "A centralized Babel Configuration for modern ECMAscript development",
-  "keywords": [],
+  "keywords": [
+    "babel",
+    "preset",
+    "babel-preset",
+    "react",
+    "typescript",
+    "nodejs",
+    "optimize",
+    "universal"
+  ],
   "license": "MIT",
   "author": "Yaroslav Usenko <usenko.jaroslav@gmail.com> (https://usenko.pp.ua)",
   "contributors": [
